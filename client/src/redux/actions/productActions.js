@@ -28,7 +28,7 @@ export function loadCategoriesSuccess(categories) {
 export function loadProducts() {
   return function (dispatch) {
     return axios
-      .get("http://localhost:5000/products/")
+      .get("/products")
       .then((products) => {
         dispatch(loadProductsSuccess(products.data));
       })
@@ -41,7 +41,7 @@ export function loadProducts() {
 export function loadCategories() {
   return function (dispatch) {
     return axios
-      .get("http://localhost:5000/categories")
+      .get("/categories")
       .then((categories) => {
         dispatch(loadCategoriesSuccess(categories.data));
       })
