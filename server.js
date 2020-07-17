@@ -56,7 +56,8 @@ app.use(cors());
 app.use(express.json());
 app.use("/", router);
 
-const uri = process.env.ATLAS_URI;
+const uri =
+  "mongodb+srv://csy930614:csy930614@cluster0.yb1dk.mongodb.net/heeretea?retryWrites=true&w=majority";
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
 const connection = mongoose.connection;
 connection.once("open", () => {
