@@ -1,0 +1,211 @@
+.catalog {
+  display: flex;
+  margin-bottom: 20vh;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.catalog-display {
+  display: flex;
+}
+
+.pagination-control {
+  position: relative;
+  z-index: 99;
+  display: flex;
+  justify-content: space-around;
+}
+
+.pagination-control span {
+  margin-left: 1vw;
+  font-size: 1vw;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3vh;
+  list-style: none;
+  width: 50%;
+  margin-right: 2vw;
+}
+
+.pagination li {
+  margin-left: 2px;
+  min-width: 10%;
+  cursor: pointer;
+  border: black 1px solid;
+  text-align: center;
+}
+
+.pagination li:hover {
+  background-color: coral;
+  transition: all 1s ease;
+}
+
+.page-view-select {
+  margin-left: -3vw;
+}
+
+.active-page {
+  background-color: coral;
+}
+
+.filter-button {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-div {
+  margin-bottom: 3vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 80vh;
+}
+
+.filter {
+  margin: 1rem;
+  transition: all 0.5s ease-in;
+}
+
+.filter:hover {
+  color: rgb(201, 162, 86);
+}
+
+.filter-div div {
+  cursor: pointer;
+  font-size: 1.3rem;
+}
+
+.active-filter {
+  margin: 1rem;
+  animation: highlight 0.5s ease-in forwards;
+}
+
+.product-display {
+  flex-grow: 2;
+  display: flex;
+  margin-left: 10vw;
+  width: 80vw;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.product-flip-card {
+  background-color: transparent;
+  perspective: 1000px;
+  width: 400px;
+  height: 400px;
+  margin-right: 2vw;
+  margin-bottom: 3vh;
+}
+
+.individual-product {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transform-style: preserve-3d;
+
+  transition: all 1s ease;
+}
+
+.product-flip-card:hover .individual-product {
+  transform: rotateY(180deg);
+}
+
+.product-card-front,
+.product-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.product-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.product-card-back {
+  background-color: #2980b9;
+  color: black;
+  transform: rotateY(180deg);
+}
+
+.addons-list span {
+  margin: 30px;
+}
+
+.addons-list li {
+  list-style: none;
+}
+
+.item-quantity span {
+  margin: 30px;
+}
+
+.quantity-button {
+  cursor: pointer;
+}
+
+.add-order {
+  cursor: pointer;
+  border: black solid 2px;
+  width: fit-content;
+  padding: 2px;
+  margin: auto;
+}
+
+@keyframes highlight {
+  from {
+    color: currentColor;
+    transform: translateX(0) translateY(0);
+  }
+  to {
+    color: rgb(201, 162, 86);
+    transform: translateX(3vw) translateY(-1vh);
+  }
+}
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .catalog-display {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-display {
+    margin: auto;
+    width: 90vw;
+  }
+
+  .product-flip-card {
+    margin-right: 0;
+  }
+
+  .pagination-control span {
+    display: none;
+  }
+
+  .filter-div {
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  .filter-div div {
+    font-size: 0.8rem;
+  }
+}

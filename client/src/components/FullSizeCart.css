@@ -1,0 +1,15 @@
+.full-cart-wrapper {
+  position: fixed;
+  top: 20vh;
+  left: 20vw;
+  width: 60vw;
+  z-index: 5;
+  background: white;
+  transition: transform 1s ease-in-out;
+  border: black solid 2px;
+  transform: translateX(-2000px);
+}
+
+.item-list span {
+  margin: 7px;
+}

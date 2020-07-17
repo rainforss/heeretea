@@ -1,0 +1,56 @@
+.sticky-cart {
+  position: fixed;
+  top: 20px;
+  right: 0;
+  z-index: 100;
+  padding: 10px;
+  padding-right: 0px;
+  background: black;
+  opacity: 0.6;
+}
+
+.sticky-cart:hover {
+  opacity: 1;
+}
+
+.badge-cart {
+  font-size: 30px;
+}
+
+.badge {
+  background: coral;
+  position: relative;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  line-height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  top: -15px;
+  left: -5px;
+}
+
+.opened-side-cart {
+  position: absolute;
+  right: 0;
+  top: 77px;
+  width: 300px;
+  background: white;
+  transition: transform 1s ease-in;
+}
+
+@media screen and (max-width: 992px) {
+  .badge-cart {
+    font-size: 20px;
+  }
+  .badge {
+    height: 15px;
+    width: 15px;
+    line-height: 17px;
+    font-size: 12px;
+  }
+
+  .opened-side-cart {
+    display: none;
+  }
+}

@@ -1,0 +1,30 @@
+.slicerright-wrapper {
+  display: flex;
+  width: 100vw;
+  margin-left: 30%;
+}
+
+.slicerright-1 {
+  border-bottom: 15px solid rgb(252, 134, 50);
+  width: 14%;
+  height: 15px;
+  transform: skew(58deg);
+
+  border-radius: 0 0 0 100%;
+}
+
+.slicerright-2 {
+  width: 18%;
+  height: 15px;
+  background: linear-gradient(58deg, rgb(252, 134, 50), rgb(250, 219, 100));
+  transform: skew(58deg);
+  margin-left: 10px;
+}
+
+.slicerright-3 {
+  width: 40%;
+  height: 15px;
+  background: linear-gradient(to right, rgb(250, 219, 100), rgb(176, 212, 128));
+  transform: skew(58deg);
+  margin-left: 10px;
+}

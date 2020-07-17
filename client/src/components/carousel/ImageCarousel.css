@@ -1,0 +1,22 @@
+.carousel-image {
+  max-height: 80vh;
+  max-width: auto;
+}
+
+.carousel-container {
+  display: flex;
+  margin-bottom: 5vh;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.individual-carousel {
+  width: 45vw;
+  margin-bottom: 5vh;
+}
+
+@media screen and (max-width: 768px) {
+  .individual-carousel {
+    width: 90vw;
+  }
+}

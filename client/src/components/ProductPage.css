@@ -1,0 +1,20 @@
+.product-page {
+  display: flex;
+  flex-direction: column;
+}
+.autoplay-control {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .autoplay-control {
+    display: block;
+    background-color: transparent;
+    padding: 3px;
+    border-radius: 3px;
+    border: 1px solid black;
+  }
+  .autoplay-control:active {
+    background-color: chocolate;
+  }
+}

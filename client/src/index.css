@@ -1,0 +1,508 @@
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: coral;
+}
+
+body {
+  font-family: "Josefin Sans", cursive;
+}
+
+.outer-wrapper {
+  overflow-x: hidden;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  max-height: 10vh;
+  font-size: 1.2rem;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.logo img {
+  width: 40%;
+  margin-top: 5px;
+  max-height: 10vh;
+}
+
+.nav-links {
+  display: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-links a:hover {
+  color: rgb(201, 162, 86);
+}
+
+.fixed-nav-links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 60%;
+}
+
+.fixed-nav-links a {
+  text-decoration: none;
+  color: white;
+}
+
+.fixed-nav-links a:hover {
+  color: rgb(201, 162, 86);
+}
+
+.hamburger {
+  display: none;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 5px;
+  background-color: rgb(255, 255, 255);
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+.header-container {
+  background-image: url("./assets/bgimage/hero_image.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+  width: auto;
+}
+
+@keyframes slideout {
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes slidein {
+  from {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+}
+
+@keyframes bounce {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 50px, 0);
+  }
+}
+
+.store-intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 30vh;
+}
+
+.store-intro h2 {
+  margin-bottom: 3vh;
+  font-size: 3rem;
+}
+
+.store-intro p {
+  font-size: 1.2rem;
+}
+
+.bgimg-about {
+  background-image: url("./assets/bgimage/about_second.jpeg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  height: 40vh;
+  width: auto;
+  position: relative;
+  opacity: 0.65;
+}
+
+.caption {
+  position: absolute;
+  text-align: center;
+  left: 0;
+  width: 100%;
+  top: 50%;
+}
+
+.caption span {
+  color: black;
+  font-size: 3rem;
+  z-index: 2;
+}
+
+.team {
+  position: relative;
+  height: 20vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.team div {
+  margin-left: 20vh;
+}
+
+.bgimg-about-2 {
+  background-image: url("./assets/bgimage/about_second.jpeg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  height: 40vh;
+  position: relative;
+  opacity: 0.65;
+}
+
+.value {
+  position: relative;
+  height: 20vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.value div {
+  margin-right: 20vh;
+  text-align: right;
+}
+
+.product-intro {
+  display: grid;
+  grid-template-columns: 5fr 6fr 5fr 13fr 22fr 3fr;
+  grid-template-rows: 80px auto 20px auto auto auto;
+  margin-bottom: 10vh;
+}
+
+.img1 {
+  background: url("./assets/bgimage/image1.jpg");
+  background-size: cover;
+  grid-column: 1/3;
+  grid-row: 2/5;
+}
+.img2 {
+  background: url("./assets/bgimage/image2.jpg");
+  background-size: cover;
+  grid-column: 2/4;
+  grid-row: 3/6;
+}
+.img3 {
+  background: url("./assets/bgimage/image3.jpg");
+  background-size: cover;
+  grid-column: 5/6;
+  grid-row: 4/7;
+}
+
+.strapline {
+  grid-column: 3/6;
+  grid-row: 2/3;
+  font-size: 2rem;
+  margin-bottom: 5vh;
+  float: right;
+  display: flex;
+  justify-content: flex-end;
+}
+.cta {
+  grid-column: 2/5;
+  grid-row: 6/7;
+  font-size: 1.2rem;
+  margin-top: 5vh;
+}
+.intro-wrapper {
+  grid-column: 4/6;
+  grid-row: 4/6;
+  margin-bottom: 5vh;
+  margin-left: 10vw;
+}
+
+.intro h2 {
+  font-size: 5rem;
+  margin-bottom: 10vh;
+  margin-top: -3.2vh;
+  color: rgb(252, 134, 50);
+}
+
+.intro p {
+  font-size: 1.2rem;
+  color: black;
+  width: fit-content;
+  padding: 15px 10px;
+  border-radius: 25px;
+  background: white;
+}
+
+.contact-button {
+  display: inline-block;
+  margin-top: 10vh;
+  text-decoration: none;
+  color: white;
+  font-size: 2rem;
+  background-color: rgb(252, 163, 169);
+  padding: 1vh 1vh;
+  border-radius: 0.8vh;
+}
+
+.contact-button:hover {
+  background-color: rgb(198, 1, 0);
+}
+
+.product-container {
+  position: relative;
+  background-image: url("./assets/bgimage/hero_image.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 80vh;
+}
+
+.footer {
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 25vh;
+}
+
+.footer-products {
+  background-color: rgb(252, 134, 50);
+  width: 30%;
+  height: 80%;
+  font-size: 2rem;
+  color: white;
+}
+
+.footer-products li {
+  list-style: none;
+  font-size: 1vw;
+  margin-top: 1vh;
+}
+
+.footer-products li a {
+  text-decoration: none;
+  color: white;
+}
+
+.footer-products li a:hover {
+  color: rgb(98, 143, 115);
+}
+
+.footer-social {
+  background-color: rgb(250, 219, 100);
+  width: 30%;
+  height: 80%;
+  font-size: 2rem;
+  text-align: center;
+  color: brown;
+}
+
+.social-section {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+}
+
+.social-icons {
+  margin-top: 1vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.social-icons a {
+  color: brown;
+  font-size: 3vh;
+}
+
+.social-icons a:hover {
+  color: rgb(252, 163, 169);
+}
+
+.footer-contact {
+  background-color: rgb(176, 212, 128);
+  width: 30%;
+  height: 80%;
+  font-size: 2rem;
+  text-align: end;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+}
+
+.footer-contact li {
+  list-style: none;
+  font-size: 1vw;
+  margin-top: 1vh;
+}
+
+.footer-contact h5 {
+  margin-bottom: -0.7vh;
+  margin-top: 0.5vh;
+  color: white;
+}
+
+.footer-contact a {
+  text-decoration: none;
+  color: white;
+}
+
+.footer-contact a:hover {
+  color: rgb(198, 1, 0);
+}
+
+.disclaimer {
+  background-color: rgb(198, 209, 208);
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+  height: 3vh;
+  width: 90vw;
+  font-size: 1vw;
+  padding-right: 0.5vw;
+  border-radius: 0 1.5vh 1.5vh 0;
+}
+
+.producer {
+  background-color: rgb(77, 76, 83);
+  color: azure;
+  display: flex;
+  align-self: flex-end;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90vw;
+  height: 3vh;
+  padding-left: 0.5vw;
+  margin-bottom: 2vh;
+  font-size: 1vw;
+  border-radius: 1.5vh 0 0 1.5vh;
+}
+
+.error {
+  color: red;
+}
+
+@media screen and (max-width: 992px) {
+  .outer-wrapper {
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  .fixed-nav-links {
+    display: none;
+  }
+
+  .nav-links {
+    display: flex;
+    position: absolute;
+    justify-content: space-around;
+    align-items: center;
+    right: 0px;
+    height: 90vh;
+    width: 100%;
+    top: 10vh;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: transform 1.5s ease-in;
+  }
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+
+  .nav-links a {
+    opacity: 1;
+  }
+
+  .disclaimer,
+  .producer {
+    font-size: 2vw;
+  }
+
+  .social-icons a {
+    font-size: 2vh;
+  }
+
+  .footer-products li {
+    font-size: 2.5vw;
+  }
+
+  .footer-contact li {
+    font-size: 2.5vw;
+  }
+
+  .img2 {
+    visibility: hidden;
+  }
+
+  .cta {
+    font-size: 0.8rem;
+  }
+
+  .header-container {
+    background-attachment: scroll;
+  }
+  .bgimg-about {
+    background-attachment: scroll;
+  }
+  .bgimg-about-2 {
+    display: none;
+  }
+  .value {
+    display: none;
+  }
+
+  .product-container {
+    background-attachment: scroll;
+    height: 40vh;
+  }
+
+  .intro h2 {
+    font-size: 3rem;
+    margin-bottom: 5vh;
+  }
+
+  .intro p {
+    font-size: 1rem;
+  }
+
+  .strapline {
+    font-size: 1.5rem;
+  }
+
+  .contact-button {
+    font-size: 1.5rem;
+    margin-top: 5vh;
+  }
+}
