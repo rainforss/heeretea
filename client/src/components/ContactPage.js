@@ -66,7 +66,7 @@ function ContactPage() {
     if (!isFormValid()) return;
     axios({
       method: "POST",
-      url: "http://localhost:3000/send",
+      url: "/send",
       data: contactInfo,
     }).then((response) => {
       if (response.data.status === "success") {
