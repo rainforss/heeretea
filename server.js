@@ -13,8 +13,8 @@ const transport = {
   host: "smtp.gmail.com",
   port: 587,
   auth: {
-    user: "",
-    pass: "",
+    user: "eheeretea@gmail.com",
+    pass: "csy930614",
   },
 };
 
