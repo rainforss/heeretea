@@ -13,27 +13,24 @@ function FullSizeCart(props) {
     props.cartActions.deleteCartItem(toBeDeleted);
     toast.success(`${toBeDeleted} has been removed from cart`);
   }
-
+  /*needs improvement*/
   function add(event) {
     const productName = event.currentTarget.getAttribute("name");
-    const newQuant =
-      props.cartItems.find((item) => (item.productName = productName))
-        .quantity + 1;
+    const currentProduct = props.cartItems.find(
+      (item) => item.productName === productName
+    );
+    const newQuant = currentProduct.quantity + 1;
     props.cartActions.changeItemQuantity(newQuant, productName);
   }
   function remove(event) {
     const productName = event.currentTarget.getAttribute("name");
+    const currentProduct = props.cartItems.find(
+      (item) => item.productName === productName
+    );
     var newQuant;
-    if (
-      props.cartItems.find((item) => (item.productName = productName))
-        .quantity !== 0
-    ) {
-      newQuant =
-        props.cartItems.find((item) => (item.productName = productName))
-          .quantity - 1;
+    if (currentProduct.quantity !== 0) {
+      newQuant = currentProduct.quantity - 1;
       if (newQuant === 0) {
-        props.cartActions.deleteCartItem(productName);
-        toast.success(`${productName} has been removed from cart`);
       } else {
         props.cartActions.changeItemQuantity(newQuant, productName);
       }

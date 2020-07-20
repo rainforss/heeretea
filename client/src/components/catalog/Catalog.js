@@ -249,15 +249,23 @@ function Catalog(props) {
   }
 
   function addingIsValid(product) {
-    const { sugarlevel, icelevel, quantity, productName, isHot } = product;
+    const {
+      sugarlevel,
+      icelevel,
+      quantity,
+      productName,
+      isHot,
+      iceChangeable,
+      sugarChangeable,
+    } = product;
     var errors = {};
 
-    if (!sugarlevel)
+    if (!sugarlevel && sugarChangeable)
       errors[productName] = {
         ...errors[productName],
         sugarlevel: "Please choose sugar amount.",
       };
-    if (!icelevel && !isHot)
+    if (!icelevel && iceChangeable && !isHot)
       errors[productName] = {
         ...errors[productName],
         icelevel: "Please choose ice amount.",
@@ -272,7 +280,7 @@ function Catalog(props) {
 
     return Object.keys(errors).length === 0;
   }
-
+  /*Needs improvement*/
   function addToCart(event) {
     const productName = event.target.getAttribute("name");
     const currentProduct = props.products[productName];

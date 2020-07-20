@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleDoubleLeft,
   faAngleDoubleRight,
+  faAngleLeft,
+  faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
 
 function Pagination(props) {
@@ -27,7 +29,7 @@ function Pagination(props) {
           <FontAwesomeIcon icon={faAngleDoubleLeft} />
         </li>
         <li className="non-active-page" onClick={props.prevPage}>
-          Prev
+          <FontAwesomeIcon icon={faAngleLeft} />
         </li>
 
         {displayedPages.map((number) => (
@@ -46,7 +48,7 @@ function Pagination(props) {
         ))}
 
         <li className="non-active-page" onClick={props.nextPage}>
-          Next
+          <FontAwesomeIcon icon={faAngleRight} />
         </li>
         <li
           className="non-active-page"

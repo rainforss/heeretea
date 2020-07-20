@@ -64,7 +64,9 @@ function ContactPage() {
   function handleSubmit(event) {
     event.preventDefault();
     if (!isFormValid()) return;
-    axios({
+    alert("Still under construction");
+    resetForm();
+    /*axios({
       method: "POST",
       url: "/send",
       data: contactInfo,
@@ -75,7 +77,7 @@ function ContactPage() {
       } else if (response.data.status === "fail") {
         alert("message failed to send");
       }
-    });
+    });*/
   }
 
   function resetForm() {

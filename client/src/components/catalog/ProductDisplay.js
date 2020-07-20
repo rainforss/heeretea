@@ -18,9 +18,6 @@ function ProductDisplay(props) {
               </span>
             </div>
             <div className="product-card-back">
-              <span>
-                {product.productName} {product.price}
-              </span>
               <form>
                 <div className="temp-select">
                   <SelectInput
