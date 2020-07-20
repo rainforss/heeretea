@@ -30,9 +30,26 @@ const productSchema = new Schema(
       type: Boolean,
       required: true,
     },
+    iceChangeable: {
+      type: Boolean,
+      required: true,
+    },
+    sugarChangeable: {
+      type: Boolean,
+      required: true,
+    },
+    iceRemovable: {
+      type: Boolean,
+      required: true,
+    },
+    canHot: {
+      type: Boolean,
+      required: true,
+    },
   },
   {
-    timestamps: true,
+    timestamps: false,
+    versionKey: false,
   }
 );
 

@@ -13,8 +13,8 @@ const transport = {
   host: "smtp.gmail.com",
   port: 587,
   auth: {
-    user: "eheeretea@gmail.com",
-    pass: "csy930614",
+    user: process.env.USER,
+    pass: process.env.PASS,
   },
 };
 
@@ -80,8 +80,4 @@ if (process.env.NODE_ENV === "production") {
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
-});
-
-app.get("/express_backend", (req, res) => {
-  res.send({ express: "YOUR Backend is good" });
 });

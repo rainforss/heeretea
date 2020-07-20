@@ -5,6 +5,14 @@ export function changeIceAmount(ice, itemName) {
   return { type: types.CHANGE_ICE, ice, itemName };
 }
 
+export function changeHotCold(hot, itemName) {
+  return { type: types.CHANGE_HOT_COLD, hot, itemName };
+}
+
+export function removeIceSelection(itemName) {
+  return { type: types.REMOVE_ICE_SELECTION, itemName };
+}
+
 export function changeSugarAmount(sugar, itemName) {
   return { type: types.CHANGE_SUGAR, sugar, itemName };
 }

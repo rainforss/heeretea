@@ -26,14 +26,23 @@ function Catalog(props) {
 
   /* States for pagination */
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage, setPostPerPage] = useState(3);
+  const [postPerPage, setPostPerPage] = useState(6);
 
-  const indexOfLastProductInPage = currentPage * postPerPage;
-  const indexOfFirstProductInPage = indexOfLastProductInPage - postPerPage;
-  const currentProductsInPage = filteredProducts.slice(
-    indexOfFirstProductInPage,
-    indexOfLastProductInPage
-  );
+  function getCurrentProductsInPage() {
+    const indexOfLastProductInPage = currentPage * postPerPage;
+    const indexOfFirstProductInPage = indexOfLastProductInPage - postPerPage;
+    const currentProductsInPage = filteredProducts.slice(
+      indexOfFirstProductInPage,
+      indexOfLastProductInPage
+    );
+    return currentProductsInPage;
+  }
+
+  const maxPageNumber = Math.ceil(filteredProducts.length / postPerPage);
+  const allPageNumbers = [];
+  for (var i = 1; i <= maxPageNumber; i++) {
+    allPageNumbers.push(i);
+  }
 
   const sugarSelection = [
     { name: "100% Sugar", inquiryId: 100 },
@@ -52,11 +61,11 @@ function Catalog(props) {
   ];
 
   const addOns = [
-    { name: "Black Pearl", price: 0.99 },
-    { name: "White Pearl", price: 0.99 },
-    { name: "Pudding", price: 0.99 },
-    { name: "Cheese", price: 0.99 },
-    { name: "Milk Foam", price: 0.99 },
+    { name: "Bubble", price: 0.55 },
+    { name: "Jelly Ball", price: 0.99 },
+    { name: "Brulee", price: 1.1 },
+    { name: "Cheese", price: 1.1 },
+    { name: "Hulless Barley", price: 1.1 },
   ];
 
   const [errors, setErrors] = useState({});
@@ -70,24 +79,15 @@ function Catalog(props) {
         });
       }
     });*/
-    props.productActions
-      .loadProducts()
-      .catch((error) => alert("Loading products failed" + error));
-  }, []);
-
-  useEffect(() => {
-    /*axios.get("http://localhost:5000/categories/").then((response) => {
-      if (productsData.categories.length === 0) {
-        setProductsData({
-          ...productsData,
-          categories: response.data,
-        });
-      }
-    });*/
-    props.productActions
-      .loadCategories()
-      .catch((error) => alert("Loading categories failed" + error));
-  }, []);
+    if (Object.keys(props.products).length === 0) {
+      props.productActions
+        .loadProducts()
+        .catch((error) => alert("Loading products failed" + error));
+      props.productActions
+        .loadCategories()
+        .catch((error) => alert("Loading categories failed" + error));
+    }
+  }, [props.products, props.productActions]);
 
   function prevPage() {
     if (currentPage === 1) {
@@ -100,16 +100,17 @@ function Catalog(props) {
   function nextPage() {
     if (currentPage === Math.ceil(filteredProducts.length / postPerPage)) {
     } else {
-      let nextPageNumber = currentPage + 1;
+      const nextPageNumber = currentPage + 1;
       setCurrentPage(nextPageNumber);
     }
   }
 
   function changePage(event) {
-    const nameTag = event.target.getAttribute("name");
+    const nameTag = event.currentTarget.getAttribute("name");
     const _currentPage = parseInt(nameTag, 10);
 
     setCurrentPage(_currentPage);
+
     const chosenColor = chooseBorderColor(filteredCategory);
     setInlineStyle({
       animation: "zoomIn 0.5s ease-in",
@@ -185,6 +186,17 @@ function Catalog(props) {
     props.productActions.changeIceAmount(iceLevel, product);
   }
 
+  function toggleHotCold(event) {
+    const productName = event.target.name;
+    const newTemp = !props.products[productName].isHot;
+    if (newTemp && props.products[productName].icelevel) {
+      props.productActions.removeIceSelection(productName);
+    }
+    props.productActions.changeHotCold(newTemp, productName);
+  }
+
+  console.log(props.products["Cheese Green Tea"]);
+
   function addIngredients(event) {
     const tag = event.currentTarget;
     const itemName = tag.getAttribute("name");
@@ -237,7 +249,7 @@ function Catalog(props) {
   }
 
   function addingIsValid(product) {
-    const { sugarlevel, icelevel, quantity, productName } = product;
+    const { sugarlevel, icelevel, quantity, productName, isHot } = product;
     var errors = {};
 
     if (!sugarlevel)
@@ -245,7 +257,7 @@ function Catalog(props) {
         ...errors[productName],
         sugarlevel: "Please choose sugar amount.",
       };
-    if (!icelevel)
+    if (!icelevel && !isHot)
       errors[productName] = {
         ...errors[productName],
         icelevel: "Please choose ice amount.",
@@ -270,11 +282,11 @@ function Catalog(props) {
         item.productName === productName &&
         item.icelevel === currentProduct.icelevel &&
         item.sugarlevel === currentProduct.sugarlevel &&
-        item["Black Pearl"] === currentProduct["Black Pearl"] &&
-        item["White Pearl"] === currentProduct["White Pearl"] &&
-        item["Pudding"] === currentProduct["Pudding"] &&
+        item["Bubble"] === currentProduct["Bubble"] &&
+        item["Jelly Ball"] === currentProduct["Jelly Ball"] &&
+        item["Brulee"] === currentProduct["Brulee"] &&
         item["Cheese"] === currentProduct["Cheese"] &&
-        item["Milk Foam"] === currentProduct["Milk Foam"]
+        item["Hulless Barley"] === currentProduct["Hulless Barley"]
     );
     if (cartItemWithSameSpec) {
       const newQuantity =
@@ -285,11 +297,8 @@ function Catalog(props) {
       props.cartActions.addItemToCart(currentProduct);
       props.productActions.loadProducts();
     }
-    toast.success("Item has been added to cart");
+    toast.success(`${productName} has been added to cart`);
   }
-
-  console.log(props.cartItems);
-  console.log(props.products);
 
   return (
     <div className="catalog">
@@ -305,13 +314,13 @@ function Catalog(props) {
         pauseOnHover
       />
       <Pagination
-        postPerPage={postPerPage}
-        filteredProducts={filteredProducts}
         changePage={changePage}
         pageView={pageView}
         prevPage={prevPage}
         nextPage={nextPage}
         chosen={currentPage}
+        maxPageNumber={maxPageNumber}
+        allPageNumbers={allPageNumbers}
       />
       <div className="catalog-display">
         <FilterForm
@@ -321,7 +330,7 @@ function Catalog(props) {
         />
         <ProductDisplay
           style={inlineStyle}
-          products={currentProductsInPage}
+          products={getCurrentProductsInPage()}
           iceSelection={iceSelection}
           sugarSelection={sugarSelection}
           selectIce={selectIce}
@@ -332,6 +341,7 @@ function Catalog(props) {
           addOns={addOns}
           addQuantity={addQuantity}
           removeQuantity={removeQuantity}
+          toggleHotCold={toggleHotCold}
           errors={errors}
         />
       </div>

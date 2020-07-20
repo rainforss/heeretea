@@ -11,6 +11,7 @@ function SelectInput(props) {
           id={props.id}
           value={props.value}
           onChange={props.onChange}
+          disabled={props.disable}
         >
           <option hidden>-- select an option --</option>
           {props.inquiryOptions.map((inquiry) => (

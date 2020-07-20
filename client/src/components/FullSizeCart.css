@@ -8,8 +8,51 @@
   transition: transform 1s ease-in-out;
   border: black solid 2px;
   transform: translateX(-2000px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.item-list {
+  padding: 10px;
+  text-align: left;
 }
 
 .item-list span {
   margin: 7px;
+}
+
+.cart-summary {
+  margin: 20px;
+}
+
+.cart-control {
+  display: flex;
+  justify-content: space-between;
+}
+
+.check-out-btn {
+  cursor: pointer;
+}
+
+.close-cart-btn {
+  cursor: pointer;
+}
+
+.remove-item-btn {
+  cursor: pointer;
+}
+
+table th,
+td {
+  padding: 10px 15px;
+}
+
+@media screen and (max-width: 992px) {
+  .full-cart-wrapper {
+    width: 98vw;
+    left: 0;
+    right: 0;
+  }
 }

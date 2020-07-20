@@ -12,16 +12,25 @@ function ProductDisplay(props) {
           className="product-flip-card"
         >
           <div className="individual-product">
-            <div className="product-card-front"></div>
+            <div className="product-card-front">
+              <span>
+                {product.productName} {product.price}
+              </span>
+            </div>
             <div className="product-card-back">
               <span>
                 {product.productName} {product.price}
               </span>
               <form>
-                <div>
+                <div className="temp-select">
                   <SelectInput
+                    disable={!product.iceChangeable || product.isHot}
                     label="Ice Selection"
-                    inquiryOptions={props.iceSelection}
+                    inquiryOptions={
+                      props.iceRemovable
+                        ? props.iceSelection
+                        : props.iceSelection.slice(0, -1)
+                    }
                     name={product.productName}
                     id={product.productName + " iceSelection"}
                     value={product.icelevel ? product.icelevel : "default"}
@@ -32,9 +41,30 @@ function ProductDisplay(props) {
                         : ""
                     }
                   />
+                  <div
+                    className="hot-select"
+                    style={
+                      product.canHot
+                        ? { display: "inline" }
+                        : { display: "none" }
+                    }
+                  >
+                    <input
+                      disabled={product.category === "Hot Drinks"}
+                      type="checkbox"
+                      id={"hotSelect" + product.productName}
+                      onChange={props.toggleHotCold}
+                      checked={product.isHot}
+                      name={product.productName}
+                    />
+                    <label htmlFor={"hotSelect" + product.productName}>
+                      HOT
+                    </label>
+                  </div>
                 </div>
                 <div>
                   <SelectInput
+                    disable={!product.sugarChangeable}
                     label="Sugar Selection"
                     inquiryOptions={props.sugarSelection}
                     name={product.productName}

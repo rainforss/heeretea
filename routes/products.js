@@ -13,6 +13,10 @@ router.route("/add").post((req, res) => {
   const category = req.body.category;
   const price = req.body.price;
   const isHot = req.body.isHot;
+  const iceChangeable = req.body.iceChangeable;
+  const sugarChangeable = req.body.sugarChangeable;
+  const iceRemovable = req.body.iceRemovable;
+  const canHot = req.body.canHot;
 
   const newProduct = new Product({
     id,
@@ -20,6 +24,10 @@ router.route("/add").post((req, res) => {
     category,
     price,
     isHot,
+    iceChangeable,
+    sugarChangeable,
+    iceRemovable,
+    canHot,
   });
 
   newProduct
@@ -47,6 +55,10 @@ router.route("/update/:id").post((req, res) => {
     product.category = req.body.category;
     product.price = req.body.price;
     product.isHot = req.body.isHot;
+    product.iceChangeable = req.body.iceChangeable;
+    product.sugarChangeable = req.body.sugarChangeable;
+    product.iceRemovable = req.body.iceRemovable;
+    product.canHot = req.body.canHot;
 
     product
       .save()

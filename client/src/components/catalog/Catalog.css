@@ -17,8 +17,7 @@
 }
 
 .pagination-control span {
-  margin-left: 1vw;
-  font-size: 1vw;
+  font-size: 1rem;
 }
 
 .pagination {
@@ -36,11 +35,6 @@
   cursor: pointer;
   border: black 1px solid;
   text-align: center;
-}
-
-.pagination li:hover {
-  background-color: coral;
-  transition: all 1s ease;
 }
 
 .page-view-select {
@@ -151,6 +145,17 @@
   cursor: pointer;
 }
 
+.temp-select {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.hot-select * {
+  display: inline;
+  margin: 5px;
+}
+
 .add-order {
   cursor: pointer;
   border: black solid 2px;
@@ -193,10 +198,6 @@
 
   .product-flip-card {
     margin-right: 0;
-  }
-
-  .pagination-control span {
-    display: none;
   }
 
   .filter-div {

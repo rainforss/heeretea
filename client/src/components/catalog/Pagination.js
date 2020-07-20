@@ -1,21 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faAngleDoubleLeft,
+  faAngleDoubleRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Pagination(props) {
-  const pageNumbers = [];
-  for (
-    let i = 1;
-    i <= Math.ceil(props.filteredProducts.length / props.postPerPage);
-    i++
-  ) {
-    pageNumbers.push(i);
+  const chosenPageIndex = props.allPageNumbers.findIndex(
+    (num) => num === props.chosen
+  );
+  let displayedPages;
+  if (chosenPageIndex < 2) {
+    displayedPages = props.allPageNumbers.slice(0, 5);
+  } else if (chosenPageIndex > props.maxPageNumber - 3) {
+    displayedPages = props.allPageNumbers.slice(-5);
+  } else {
+    displayedPages = props.allPageNumbers.slice(
+      chosenPageIndex - 2,
+      chosenPageIndex + 3
+    );
   }
   return (
     <div className="pagination-control">
       <ul className="pagination">
+        <li className="non-active-page" name={1} onClick={props.changePage}>
+          <FontAwesomeIcon icon={faAngleDoubleLeft} />
+        </li>
         <li className="non-active-page" onClick={props.prevPage}>
           Prev
         </li>
-        {pageNumbers.map((number) => (
+
+        {displayedPages.map((number) => (
           <li
             key={number}
             name={number}
@@ -29,8 +44,16 @@ function Pagination(props) {
             {number}
           </li>
         ))}
+
         <li className="non-active-page" onClick={props.nextPage}>
           Next
+        </li>
+        <li
+          className="non-active-page"
+          name={props.maxPageNumber}
+          onClick={props.changePage}
+        >
+          <FontAwesomeIcon icon={faAngleDoubleRight} />
         </li>
       </ul>
       <div>
@@ -45,7 +68,6 @@ function Pagination(props) {
 
           <option value="3">3 items per page</option>
         </select>
-        <span>Page View</span>
       </div>
     </div>
   );

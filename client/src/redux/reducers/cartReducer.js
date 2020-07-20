@@ -17,6 +17,12 @@ export default function cartReducer(state = [], action) {
 
       newQuantState[index].quantity = action.quantity;
       return newQuantState;
+    case types.DELETE_CART_ITEM:
+      const deleteIndex = state.findIndex(
+        (item) => item.productName === action.itemName
+      );
+      state = update(state, { $splice: [[deleteIndex, 1]] });
+      return state;
     default:
       return state;
   }

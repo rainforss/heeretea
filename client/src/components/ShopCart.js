@@ -5,6 +5,7 @@ import "./ShopCart.css";
 import OpenedShopCart from "./OpenedShopCart";
 
 function ShopCart(props) {
+  const quantity = props.cartItems.reduce((a, b) => a + b.quantity, 0);
   return (
     <div
       className="sticky-cart"
@@ -17,7 +18,7 @@ function ShopCart(props) {
         color="white"
         className="badge-cart"
       />
-      <span className="badge">5</span>
+      <span className="badge">{quantity}</span>
 
       <OpenedShopCart
         showCart={props.showCart}

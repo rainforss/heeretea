@@ -93,6 +93,7 @@ function Header(props) {
         mouseLeave={handleLeaveCart}
         showCart={slideCart}
         viewFullCart={toggleFullCart}
+        cartItems={props.cartItems}
       />
       <FullSizeCart
         isFullCartOpen={fullCart}
