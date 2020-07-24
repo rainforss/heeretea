@@ -9,30 +9,27 @@ import CartLayout from "./CartLayout.js";
 
 function FullSizeCart(props) {
   function completelyRemoveItem(event) {
-    const toBeDeleted = event.currentTarget.getAttribute("name");
-    props.cartActions.deleteCartItem(toBeDeleted);
-    toast.success(`${toBeDeleted} has been removed from cart`);
+    const toBeDeleted = event.currentTarget;
+    const toBeDeletedIndex = toBeDeleted.getAttribute("data-index");
+    const toBeDeletedName = toBeDeleted.getAttribute("name");
+    props.cartActions.deleteCartItem(toBeDeletedIndex);
+    toast.success(`${toBeDeletedName} has been removed from cart`);
   }
   /*needs improvement*/
   function add(event) {
-    const productName = event.currentTarget.getAttribute("name");
-    const currentProduct = props.cartItems.find(
-      (item) => item.productName === productName
-    );
-    const newQuant = currentProduct.quantity + 1;
-    props.cartActions.changeItemQuantity(newQuant, productName);
+    const toBeAdded = event.currentTarget;
+    const toBeAddedIndex = toBeAdded.getAttribute("data-index");
+    const newQuant = props.cartItems[toBeAddedIndex].quantity + 1;
+    props.cartActions.controlCartItem(newQuant, toBeAddedIndex);
   }
   function remove(event) {
-    const productName = event.currentTarget.getAttribute("name");
-    const currentProduct = props.cartItems.find(
-      (item) => item.productName === productName
-    );
-    var newQuant;
-    if (currentProduct.quantity !== 0) {
-      newQuant = currentProduct.quantity - 1;
+    const toBeAdded = event.currentTarget;
+    const toBeAddedIndex = toBeAdded.getAttribute("data-index");
+    if (props.cartItems[toBeAddedIndex].quantity !== 0) {
+      var newQuant = props.cartItems[toBeAddedIndex].quantity - 1;
       if (newQuant === 0) {
       } else {
-        props.cartActions.changeItemQuantity(newQuant, productName);
+        props.cartActions.controlCartItem(newQuant, toBeAddedIndex);
       }
     }
   }

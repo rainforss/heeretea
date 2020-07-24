@@ -35,7 +35,9 @@ function CartLayout(props) {
       style={props.isFullCartOpen ? { transform: "translateX(0)" } : {}}
     >
       <h2>Shopping Cart</h2>
-
+      <h3 hidden={props.cartItems.length !== 0}>
+        Your cart is empty, let's fill it up!
+      </h3>
       <div className="item-list">
         <table hidden={props.cartItems.length === 0}>
           <thead>
@@ -50,14 +52,15 @@ function CartLayout(props) {
             </tr>
           </thead>
           <tbody>
-            {props.cartItems.map((item) => (
+            {props.cartItems.map((item, index) => (
               <tr key={uuidv4()}>
                 <td>
                   <FontAwesomeIcon
                     icon={faWindowClose}
-                    onClick={props.completelyRemoveItem}
                     className="remove-item-btn"
                     name={item.productName}
+                    data-index={index}
+                    onClick={props.completelyRemoveItem}
                   />
                 </td>
                 <td>{item.productName}</td>
@@ -67,6 +70,7 @@ function CartLayout(props) {
                     productName={item.productName}
                     add={props.add}
                     remove={props.remove}
+                    index={index}
                   />
                 </td>
                 <td>
@@ -117,7 +121,7 @@ function CartLayout(props) {
         </table>
       </div>
       <div className="mobile-list">
-        {props.cartItems.map((item) => (
+        {props.cartItems.map((item, index) => (
           <div key={uuidv4()} className="each-item">
             <div className="cart-item-title">
               <FontAwesomeIcon
@@ -125,6 +129,7 @@ function CartLayout(props) {
                 onClick={props.completelyRemoveItem}
                 className="remove-item-btn"
                 name={item.productName}
+                data-index={index}
               />
               {item.productName}
 
@@ -133,6 +138,7 @@ function CartLayout(props) {
                 productName={item.productName}
                 add={props.add}
                 remove={props.remove}
+                index={index}
               />
             </div>
 
@@ -188,10 +194,10 @@ function CartLayout(props) {
       <div className="cart-summary">
         <p>Prefer ordering by phone? Call us at ......</p>
 
-        <div>Subtotal:{subtotal ? `${subtotal.toFixed(2)} CAD` : ""}</div>
-        <div>GST:{subtotal ? `${(subtotal * 0.05).toFixed(2)} CAD` : ""}</div>
+        <div>Subtotal: {subtotal ? `${subtotal.toFixed(2)} CAD` : ""}</div>
+        <div>GST: {subtotal ? `${(subtotal * 0.05).toFixed(2)} CAD` : ""}</div>
         <div>
-          Estimated Total:
+          Estimated Total:{" "}
           {subtotal ? `${(subtotal * 1.05).toFixed(2)} CAD` : ""}
         </div>
       </div>

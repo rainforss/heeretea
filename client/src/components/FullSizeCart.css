@@ -14,6 +14,10 @@
   padding: 20px;
 }
 
+.full-cart-wrapper h3 {
+  margin: 15px;
+}
+
 .item-list {
   padding: 10px;
   text-align: left;
@@ -53,6 +57,9 @@ td {
   display: none;
 }
 
+.cart-summary * {
+  margin: 15px;
+}
 @media screen and (max-width: 1380px) {
   .full-cart-wrapper {
     width: 98vw;

@@ -1,6 +1,7 @@
 import * as types from "../actions/actionTypes";
 
 import update from "immutability-helper";
+import { controlCartItem } from "../actions/cartActions";
 
 export default function cartReducer(state = [], action) {
   switch (action.type) {
@@ -18,11 +19,14 @@ export default function cartReducer(state = [], action) {
       newQuantState[index].quantity = action.quantity;
       return newQuantState;
     case types.DELETE_CART_ITEM:
-      const deleteIndex = state.findIndex(
-        (item) => item.productName === action.itemName
-      );
+      const deleteIndex = action.index;
       state = update(state, { $splice: [[deleteIndex, 1]] });
       return state;
+
+    case types.CONTROL_CART_ITEM:
+      newQuantState = [...state];
+      newQuantState[action.index].quantity = action.quantity;
+      return newQuantState;
     default:
       return state;
   }

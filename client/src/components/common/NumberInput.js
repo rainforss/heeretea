@@ -11,6 +11,7 @@ function NumberInput(props) {
         onClick={props.remove}
         value={props.quantity}
         className="quantity-button"
+        data-index={props.index}
       />
       <span>{props.quantity}</span>
       <FontAwesomeIcon
@@ -18,6 +19,7 @@ function NumberInput(props) {
         name={props.productName}
         onClick={props.add}
         className="quantity-button"
+        data-index={props.index}
       />
       <span hidden={!props.error} className="error">
         {props.error}
